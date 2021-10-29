@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package interface;
+
+message query {
+    repeated uint32 left_query = 1;
+    repeated uint32 right_query = 2;
+}
+
+message reply {
+    repeated uint32 v = 1;
+}

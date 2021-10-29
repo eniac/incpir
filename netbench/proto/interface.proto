@@ -1,0 +1,55 @@
+syntax = "proto2";
+
+package interface;
+
+message Block {
+    required bytes bitsets = 1;
+}
+
+message OnlineReply {
+    repeated uint64 reply = 1;
+}
+
+message OfflineReply {
+    repeated uint64 parities = 1;
+}
+
+message OnlineQuery {
+    repeated uint32 indices = 1;
+}
+
+message SetDesc {
+    repeated uint32 sk = 1;
+    required uint32 shift = 2;
+    repeated uint32 aux = 3;
+}
+
+message OfflineQuery {
+    repeated SetDesc sets = 1;
+}
+
+message DiffSetDesc {
+    repeated uint32 sk = 1;
+    required uint32 shift = 2;
+    repeated uint32 aux_prev = 3;
+    repeated uint32 aux_curr = 4;
+}
+
+message OfflineAddQueryShort {
+    required uint32 nbrsets = 1;
+    required uint32 setsize = 2;
+    repeated DiffSetDesc diffsets = 3; 
+    repeated uint32 mk = 4;
+}
+
+enum QueryType {
+    OFFLINE = 0;
+    ONLINE = 1;
+    ADD = 2;
+    REFRESH = 3;
+}
+
+message Query {
+    required QueryType type = 1;
+    required bytes msg = 2;
+}
