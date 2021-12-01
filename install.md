@@ -1,6 +1,6 @@
 #### Dependencies
 To compile and run the codes, please install the following dependencies:
-+ `sudo apt-get install build-essential cmake autoconf automake libtool curl
++ `sudo apt-get install build-essential cmake autoconf automake libtool libboost-all-dev curl
   make unzip`.
 + Cmake, we tried out with [cmake 3.4.0](https://cmake.org/files/v3.4/cmake-3.4.0-Linux-x86_64.tar.gz).
 + Openssl, we tried out with the
