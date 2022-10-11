@@ -1,6 +1,6 @@
 # Incremental Offline/Online PIR
 
-This repository contains the implementation for our paper "Incremental Offline/Online PIR", which will appear at USENIX Security 2022.
+This repository contains the code for Artifact Evaluation for our paper "Incremental Offline/Online PIR" in USENIX Security 2022.
 
 ## Code organization
 
@@ -45,6 +45,3 @@ See instructions in [incremental pir](./netbench/readme.md), [ck baseline](./bas
 
 In folder `torsim`, run `sh run.sh`. Theen see figures generated in `build`.
 
-## Misc
-
-We have updated the code slightly from the version in [Artifact Evaluation](https://github.com/Yiping106283/incpir/tree/main).
