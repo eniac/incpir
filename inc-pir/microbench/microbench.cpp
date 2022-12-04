@@ -4,9 +4,9 @@
 #include <unistd.h>
 #include <iomanip>
 
-#include "src/adprp.hpp"
-#include "src/client.hpp"
-#include "src/server.hpp"
+#include "../src/adprp.hpp"
+#include "../src/client.hpp"
+#include "../src/server.hpp"
 
 
 #include <chrono>

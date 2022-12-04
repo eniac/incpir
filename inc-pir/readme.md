@@ -1,10 +1,3 @@
-To build, run
-```
-mkdir -p build  
-cd build
-cmake ..
-make -j
-```
 
 In folder `bin`, run `./offline_server_eval` and `./offline_client_eval` on two machines with the following parameters:
 

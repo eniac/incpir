@@ -4,9 +4,9 @@
 #include <openssl/rand.h>
 #include <unistd.h>
 
-#include "src/adprp.hpp"
-#include "src/client.hpp"
-#include "src/server.hpp"
+#include "../src/adprp.hpp"
+#include "../src/client.hpp"
+#include "../src/server.hpp"
 
 #include <chrono>
 
