@@ -1,14 +1,12 @@
-import sys
-import ast
 import matplotlib.pyplot as plt
 import numpy as np
-fig = plt.figure(num=1,figsize=(35,30))
 
+fig = plt.figure(num=1,figsize=(35,30))
 fig, ax1 = plt.subplots()
 
 font = {'family' : 'Times New Roman',
-'weight' : 'normal',
-'size'   : 20,
+        'weight' : 'normal',
+        'size'   : 20,
 }
 
 ax1.set_xlabel('days', font)
@@ -32,16 +30,15 @@ ax1.legend(ncol=1, loc='upper center', bbox_to_anchor=(0.5, 1), framealpha=0, pr
 plt.tick_params(labelsize=24)
 
 labels = ax1.get_xticklabels() + ax1.get_yticklabels() 
-# print labels
-[label.set_fontname('Times New Roman') for label in labels]
+[label.set_fontname('Times New Roman') for label in labels]  
 
 y_server_comp = []
 serial = 4
 comp_file = open("build/server_comp.dat", "r")
 comp = comp_file.read().split(',')
 y_server_comp = [int(ele)*serial for ele in comp]
-y_server_comp = [ele/1000000 for ele in y_server_comp] # scale to sec
-x_server_comp = [3*i for i in range(0,len(y_server_comp))]   #  3 days
+y_server_comp = [ele/1000000 for ele in y_server_comp]      # scale to second
+x_server_comp = [3*i for i in range(0,len(y_server_comp))]  # 3 days
 
 ax2 = ax1.twinx()
 ax2.set_ylabel('time (sec)', font)
@@ -64,15 +61,12 @@ ax1.spines['bottom'].set_linewidth(2)
 ax1.spines['left'].set_linewidth(2)
 ax2.spines['right'].set_linewidth(2)
 
-
 plt.rcParams['font.family'] = 'serif'
 plt.grid(True, 'major', 'y', ls='--', lw=.5, c='k', alpha=.3)
 
 plt.tick_params(labelsize=24)
 labels = ax1.get_xticklabels() + ax1.get_yticklabels() + ax2.get_yticklabels()
-# print labels
-[label.set_fontname('Times New Roman') for label in labels]
-
+[label.set_fontname('Times New Roman') for label in labels]  
 
 ax1.spines['top'].set_visible(False)
 ax2.spines['top'].set_visible(False)
@@ -80,4 +74,3 @@ plt.grid(True, 'major', 'y', ls='--', lw=.5, c='k', alpha=.3)
 
 fig.tight_layout()
 fig.savefig("Figure-12a.pdf")
-

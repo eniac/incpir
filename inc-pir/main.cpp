@@ -16,10 +16,10 @@
 #include "src/adprp.hpp"
 #include "src/client.hpp"
 #include "src/server.hpp"
+#include "src/serial.hpp"
 
 #include <boost/math/distributions/hypergeometric.hpp>
 #include <random>
-#include "src/serial.hpp"
 
 #define ONESEC 1000000
 
@@ -28,7 +28,6 @@ using namespace std;
 int main(int argc, char *argv[]) {
 
     /* setup test database and related parms */
-
     uint32_t db_size = 7000;
     uint32_t set_size = 80;
     uint32_t nbr_sets = 90*12;
@@ -189,3 +188,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+

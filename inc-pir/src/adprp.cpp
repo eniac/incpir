@@ -1,13 +1,12 @@
 #include "adprp.hpp"
 
-#include <openssl/evp.h>
-
 #include <cmath>
 #include <bitset>
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <openssl/evp.h>
 
 
 uint32_t round_func(uint16_t block, Key key, uint16_t tweak,
@@ -20,7 +19,6 @@ uint32_t round_func(uint16_t block, Key key, uint16_t tweak,
     memset(keyptr, 0, KeyLen);
     for (int i = 0; i < KeyLen; i++)
         keyptr[i] = key[i];
-
 
     uint8_t *plaintext;
     plaintext = static_cast<uint8_t *>(malloc(KeyLen));
@@ -71,24 +69,18 @@ uint32_t feistel_prp(uint32_t block, uint32_t block_length,
     uint32_t perm_block;
 
     for (int i = 0; i < rounds; i++) {
-
         left1 = right;
         right1 = left ^ round_func(right, key, i+1, right_length, left_length);
 
-        // concat left and right
-
-        // re-assign left and right
-
+        // concat left and right and re-assign left and right
         if (i == rounds - 1) {
             perm_block = (left1<<left_length) | right1;
         } else {
             perm_block = (left1<<left_length) | right1;
-
             left = perm_block>>right_length & ((1<<left_length)-1);
             right = perm_block & ((1<<right_length )- 1);
         }
     }
-
     return perm_block;
 }
 
@@ -106,59 +98,48 @@ uint32_t feistel_inv_prp(uint32_t perm_block, uint32_t block_length,
     uint32_t block;
 
     for (int i = 0; i < rounds; i++) {
-
         right1 = left;
         left1 = right ^ round_func(left, key, rounds-i, left_length, right_length);
 
         if (i == rounds - 1) {
             block = (left1<<left_length) | right1;
-
         } else {
             block = (left1<<left_length) | right1;
-
             left = (block>>right_length) & ((1<<left_length)-1);
             right = block & ((1<<right_length)-1);
         }
     }
-
     return block;
 }
 
 
 uint32_t cycle_walk(uint32_t num, uint32_t range, Key key) {
-
     if (num >= range) {
         std::cout << "error:" << num << " , " << range << std::endl;
         throw std::invalid_argument("PRP input is invalid");
     }
+
     // compute the smallest n s.t. 2^n>range
-
     uint32_t cnt = log2(range) + 1;
-
     uint32_t tmp = feistel_prp(num, cnt, ROUNDS, key);
-
     while(tmp >= range) {
         tmp = feistel_prp(tmp, cnt, ROUNDS, key);
     }
-
     return tmp;
 }
 
 
 uint32_t inv_cycle_walk(uint32_t num, uint32_t range, Key key) {
-
     if (num >= range) {
         std::cout << "error:" << num << " , " << range << std::endl;
         throw std::invalid_argument("PRP input is invalid");
     }
 
     uint32_t cnt = log2(range) + 1;
-
     uint32_t tmp = feistel_inv_prp(num, cnt, ROUNDS, key);
-
     while(tmp >= range) {
         tmp = feistel_inv_prp(tmp, cnt, ROUNDS, key);
     }
-
     return tmp;
 }
+

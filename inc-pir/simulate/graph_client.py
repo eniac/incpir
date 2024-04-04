@@ -3,13 +3,10 @@ import numpy as np
 from matplotlib.pyplot import MultipleLocator
 
 fig = plt.figure(num=1,figsize=(35,30))
-
 fig, ax1 = plt.subplots()
 
-
 font = {'family' : 'Times New Roman',
-
-'size'   : 26,
+        'size'   : 26,
 }
 
 ax1.set_xlabel('days', font)
@@ -21,7 +18,6 @@ x = [3*i for i in range(1,29)]
 perstore_a = []
 perstore_b = []
 perstore_c = []
-
 
 with open("build/client_storage.dat", "r") as f:
     lines = f.readlines()
@@ -51,7 +47,6 @@ ax1.plot(x, perstore_c, color='thistle',
 ax1.legend(loc='upper center', bbox_to_anchor=(0.2,0.9), framealpha=0, prop={'family':'Times New Roman', 'size': 24})
 
 plt.text(6, 9,'#Queries between updates', fontfamily='Times New Roman', fontsize=26)
-
 plt.grid(True, 'major', 'y', ls='--', lw=.5, c='k', alpha=.3)
 
 x_major_locator=MultipleLocator(25)
@@ -64,7 +59,6 @@ labels = ax1.get_xticklabels() + ax1.get_yticklabels()
 
 ax1.spines['top'].set_visible(False)
 ax1.spines['right'].set_visible(False)
-
 ax1.spines['bottom'].set_linewidth(2)
 ax1.spines['left'].set_linewidth(2)
 

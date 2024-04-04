@@ -6,18 +6,15 @@
 #include <tuple>
 #include <array>
 
-#define KeyLen 16
-
 #define ONESEC 1000000
 #define ONEMS 1000
 #define ONEKB 8000
-
 #define BlockLen 16000
+#define KeyLen 16
 
 using namespace std;
 
-typedef array<uint8_t, KeyLen> Key;  // key length: 128 bits
-
+typedef array<uint8_t, KeyLen> Key;  // 128-bit key
 typedef bitset<BlockLen> Block;
 typedef vector<Block> Database;
 
@@ -41,8 +38,6 @@ typedef struct {
 } LocalHints;
 
 typedef struct {
-    // each element in [sets] is a set description
-    // with key, shift, and aux
     vector<SetDesc> sets;
 } OfflineQuery;
 
@@ -58,7 +53,6 @@ typedef struct {
     Block parity;
 } OnlineReply;
 
-// three update queries during offline phase
 typedef struct {
     Key sk;
     uint32_t shift;
@@ -88,7 +82,6 @@ typedef struct {
     uint32_t nbrsets;
     uint32_t setsize;
 } UpdateQueryDelete;
-
 
 Key kdf(Key mk, Key sk, uint32_t batch_no);
 

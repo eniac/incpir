@@ -20,3 +20,4 @@ where the parameters are
 -g [upper lg db size] -d [db size] 
 ```
 
+Please refer to https://github.com/dimakogan/checklist/tree/master as a more refined version of CK protocol implementation. 
